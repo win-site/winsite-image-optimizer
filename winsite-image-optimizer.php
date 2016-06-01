@@ -61,6 +61,10 @@ final class Winsite_Image_Optimizer {
 	private function requirements() {
 		require_once 'includes/class-wsi-hooks.php';
 		require_once 'includes/class-wsi-the-golden-retriever.php';
+
+		if ( is_admin() ) {	
+			require_once 'includes/class-wsi-retro-processor.php';
+		}
 	}
 
 	/**
@@ -69,6 +73,10 @@ final class Winsite_Image_Optimizer {
 	private function setup_actions() {
 		// setup actions now
 		add_action( 'init', array( $this, 'init' ) );
+
+		if ( is_admin() ) {
+			$this->retro = new WSI_Retro_Processor;
+		}
 	}
 
 	public function init() {

@@ -9,6 +9,7 @@
 class WSI_Hooks {
 	private $current_metadata;
 	private $current_attachment_id;
+	private $last_filename = false;
 
 	/**
 	 * Kick things off
@@ -16,6 +17,20 @@ class WSI_Hooks {
 	public function __construct() {
 		// Filter uploaded file. Filetype validation done within callback.
 		add_filter( 'wp_handle_upload', array($this, 'filter_wp_handle_upload' ), 10, 2 );
+		add_filter( 'wp_update_attachment_metadata', array($this, 'filter_wp_update_attachment_metadata' ), 10, 2 );
+	}
+
+	public function filter_wp_update_attachment_metadata( $data, $post_id ) {
+		// is this file the one that was last processed here?
+		if ( false !== strpos( $data['file'], $this->last_filename ) ) {
+			// if so update its meta
+			update_post_meta( $post_id, '_wsi_photonized', '1' );
+
+			// as well as attachment metadata right here
+			$data['wsi_photonized'] = true;
+		}
+
+		return $data;
 	}
 
 	/**
@@ -34,11 +49,9 @@ class WSI_Hooks {
 	 *               $overrides['upload_error_handler'](&$file, $message ) or array( 'error'=>$message ).
 	 */
 	public function filter_wp_handle_upload( $file, $action ) {
-		$mime_check = explode('/', $file['type']);
-
 		// check MIME type, if it's not an image, bye. Or if it's a sideload. 
 		// We Aim only for uploads.
-		if ( $action != 'upload' || empty($mime_check[0]) || 'image' != $mime_check[0] ) {
+		if ( $action != 'upload' || false === strpos( $file['type'], 'image/' ) ) {
 			return $file;
 		}
 
@@ -50,7 +63,7 @@ class WSI_Hooks {
 		$time = current_time( 'mysql' );
 
 		// sanitize file name
-		$filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-photonized' ) . '-' . basename( $file['url'] ) );
+		$filename = $this->last_filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-photonized' ) . '-' . basename( $file['url'] ) );
 
 		$file_array = array(
 			'name' 		=> $filename,
@@ -60,6 +73,8 @@ class WSI_Hooks {
 		// If error storing temporarily, return the error.
         if ( is_wp_error( $file_array['tmp_name'] ) ) {
         	error_log( 'WSI: Error loading a file. Orig Array: ' . print_r(array( $file_array, $file ), true) . "\n Error details: " . print_r( $file_array['tmp_name'], true ) );
+        	$this->last_filename = false; // make sure we're not going to mark this one as processed
+            
             return $file;
         }
 
@@ -70,7 +85,6 @@ class WSI_Hooks {
 
 		return $file;
 	}
-
 
 	/**
 	 * Get uploads dir URL, trailing slashed
