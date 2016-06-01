@@ -1,0 +1,27 @@
+notes
+
+
+Download image and attach to post
+https://developer.wordpress.org/reference/functions/media_sideload_image/
+
+
+
+
+Function that handles uploads in WP
+https://developer.wordpress.org/reference/functions/media_handle_upload/
+
+This one handles sideloads (see useful examples)
+https://developer.wordpress.org/reference/functions/media_handle_sideload/
+
+.. one specific for images (See ex)
+https://developer.wordpress.org/reference/functions/media_sideload_image/
+
+
+
+
+-- hooks?
+Generate post thumbnail attachment meta data.
+https://developer.wordpress.org/reference/functions/wp_generate_attachment_metadata/
+
+
+
