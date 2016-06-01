@@ -9,8 +9,28 @@ Author URI: http://win-site.co.il
 License: GPLv2 or later
 Text Domain: winsite-images
 */
+/*
+ATTENTION: ARE YOU A TALENTED...
 
-final class Winsite_images {
+██╗    ██╗██████╗     ██████╗ ███████╗██╗   ██╗███████╗██╗      ██████╗ ██████╗ ███████╗██████╗ ██████╗ 
+██║    ██║██╔══██╗    ██╔══██╗██╔════╝██║   ██║██╔════╝██║     ██╔═══██╗██╔══██╗██╔════╝██╔══██╗╚════██╗
+██║ █╗ ██║██████╔╝    ██║  ██║█████╗  ██║   ██║█████╗  ██║     ██║   ██║██████╔╝█████╗  ██████╔╝  ▄███╔╝
+██║███╗██║██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝██╔══╝  ██║     ██║   ██║██╔═══╝ ██╔══╝  ██╔══██╗  ▀▀══╝ 
+╚███╔███╔╝██║         ██████╔╝███████╗ ╚████╔╝ ███████╗███████╗╚██████╔╝██║     ███████╗██║  ██║  ██╗   
+ ╚══╝╚══╝ ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝  ╚═╝   
+                                                                                                        
+... IF SO, WE WOULD LIKE TO HEAR FROM YOU AT WINSITE.
+
+EMAIL netta [at] win-site.co.il FOR MORE DETAILS.
+*/
+
+/**
+ * Here we go!
+ *
+ * @since  1.0.0
+ * @author Maor Chasen <maor@win-site.co.il>
+ */
+final class Winsite_Image_Optimizer {
 	/**
 	 * Winsite_images instance.
 	 *
@@ -18,6 +38,10 @@ final class Winsite_images {
 	 */
 	private static $instance;
 
+	/**
+	 * Holds instance of WSI_Hooks
+	 * @var object WSI_Hooks
+	 */
 	public $hooks;
 
 	/**
@@ -52,7 +76,7 @@ final class Winsite_images {
 	}
 }
 
-function winsite_images() {
-	return Winsite_images::instance();
+function winsite_image_optimizer() {
+	return Winsite_Image_Optimizer::instance();
 }
-winsite_images();
+winsite_image_optimizer();
