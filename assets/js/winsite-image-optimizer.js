@@ -14,14 +14,26 @@ jQuery( function ($) {
 				alert( WSI_Generetro_Data.l10n.alert_no_images );
 			}
 
-			// loop it all
-			$.each( WSI_Generetro_Data.ids, function( idx, id ) {
-				WSI_Generetro.singleRun( id, function() {
-					$('<li>').text('Completed ' + id).appendTo($form);
-				} );
-			});
+			WSI_Generetro.newRun( WSI_Generetro_Data.ids, $fileList );
 		});
 	};
+
+	WSI_Generetro.newRun = function( ids, $el ) {
+		var currentID = ids.shift();
+
+		// did we end the loop?
+		if ( currentID === undefined )
+			return;
+
+		// Run it single time
+		WSI_Generetro.singleRun( currentID, function() {
+			$('<li>').text('Completed #' + currentID).appendTo($el);
+
+			// re-run
+			WSI_Generetro.newRun( ids, $el );
+		} );
+	};
+
 	WSI_Generetro.singleRun = function( id, cb ) {
 		// loop ID by ID and run it
 		var payload = {

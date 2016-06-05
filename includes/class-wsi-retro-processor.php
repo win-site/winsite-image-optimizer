@@ -103,7 +103,7 @@ class WSI_Retro_Processor {
 		$time = current_time( 'mysql' );
 
 		// sanitize file name
-		$filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-photonized' ) . '-' . basename( $fullsizepath ) );
+		$filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-' . WSI_The_Golden_Retriever::get_engine( true ) ) . '-' . basename( $fullsizepath ) );
 
 		$file_array = array(
 			'name' 		=> $filename,
