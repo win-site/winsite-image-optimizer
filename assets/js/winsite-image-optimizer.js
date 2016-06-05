@@ -1,6 +1,8 @@
 jQuery( function ($) {
 	var WSI_Generetro = window.WSI_Generetro || {};
 
+	var totalImagesToProcess = 0;
+
 	WSI_Generetro.init = function() {
 		var $form = $('#wsi-regeneretro'),
 			$fileList = $('.wsi-file-list', $form);
@@ -9,28 +11,44 @@ jQuery( function ($) {
 		$form.submit( function(e) {
 			e.preventDefault();
 
+			totalImagesToProcess = WSI_Generetro_Data.ids.length;
+
 			// do we have anything to process at all?
-			if ( WSI_Generetro_Data.ids.length <= 0 ) {
+			if ( totalImagesToProcess <= 0 ) {
 				alert( WSI_Generetro_Data.l10n.alert_no_images );
 			}
 
-			WSI_Generetro.newRun( WSI_Generetro_Data.ids, $fileList );
+			// Disable regenerate button
+			$(':submit', $form).attr('disabled', true);
+			$('.status', $form).removeClass('status-display');
+
+			WSI_Generetro.newRun( WSI_Generetro_Data.ids, $fileList, function() {
+				// This will run when process is done
+				$(':submit', $form).attr('disabled', false);
+				$('.status', $form).addClass('status-display');
+			} );
 		});
 	};
 
-	WSI_Generetro.newRun = function( ids, $el ) {
+	WSI_Generetro.newRun = function( ids, $el, cb, i ) {
 		var currentID = ids.shift();
 
+		// iteration
+		if ( i === undefined ) {
+			i = 1;
+		}
+
 		// did we end the loop?
-		if ( currentID === undefined )
-			return;
+		if ( currentID === undefined ) {
+			return cb();
+		}
 
 		// Run it single time
 		WSI_Generetro.singleRun( currentID, function() {
-			$('<li>').text('Completed #' + currentID).appendTo($el);
+			$('<li>').text('Completed #' + currentID + ' (' + i + '/' + totalImagesToProcess + ')' ).appendTo($el);
 
 			// re-run
-			WSI_Generetro.newRun( ids, $el );
+			WSI_Generetro.newRun( ids, $el, cb, ++i );
 		} );
 	};
 

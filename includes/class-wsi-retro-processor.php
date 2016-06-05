@@ -69,8 +69,20 @@ class WSI_Retro_Processor {
 
 				<?php wp_nonce_field('wsi-regeneretro') ?>
 				<button class="button button-primary" type="submit">Regenerate Retroactive</button>
+				<span class="status status-finished"><span class="dashicons dashicons-yes"></span> Finished</span>
 			</form>
 		</div>
+
+		<style>
+		#wsi-regeneretro .status { display: none; }
+		#wsi-regeneretro .status.status-display {
+			display: inline-block;
+			vertical-align: sub; /*fallback*/
+			vertical-align: -webkit-baseline-middle;
+			color: green;
+			cursor: default;
+		}
+		</style>
 		<?php
 	}
 
@@ -127,6 +139,16 @@ class WSI_Retro_Processor {
 
 		// update in meta that it got processed
 		update_post_meta( $image->ID, 'wsi_photonized', '1' );
+
+		if ( file_exists( $fullsizepath ) ) {
+			update_post_meta( $image->ID, '_wsi_original_filesize', filesize( $fullsizepath ) );
+			
+			// Delete old image while we're at it
+			unlink( $fullsizepath );
+		}
+
+		update_post_meta( $image->ID, '_wsi_engine', (string) WSI_The_Golden_Retriever::get_engine( true ) );
+
 
 		// refresh our file variables
 		$fullsizepath = $file['file'];
