@@ -24,16 +24,25 @@ class WSI_The_Golden_Retriever {
 	 * @return string               The contents of the files as returned from Photon API
 	 */
 	public static function fetch( $url_to_image ) {
-		// replace URL overrides
-		if ( false !== ( $override_siteurl = apply_filters( 'wsi_siteurl_override', false ) ) ) {
-			$url_to_image = str_replace( trailingslashit( site_url() ), trailingslashit( $override_siteurl ), $url_to_image );
+		$engine_instance = self::get_engine();
+
+		// Default processing value
+		$photon_ready_url = false;
+
+		// Check if this engine's class exist in memory 
+		if ( $engine_instance ) {
+			if ( method_exists( $engine_instance, 'fetch' ) ) {
+				// Replace URL overrides first
+				if ( false !== ( $override_siteurl = apply_filters( 'wsi_siteurl_override', false ) ) ) {
+					$url_to_image = str_replace( trailingslashit( site_url() ), trailingslashit( $override_siteurl ), $url_to_image );
+				}
+
+				// send request via engine
+				$photon_ready_url = $engine_instance->fetch( $url_to_image );
+			}
 		}
 
-		// remove schema and prepare for Photon
-		$schemaless_url = str_replace( array('http://', 'https://'), '', $url_to_image );
-		$photon_ready_url = self::api_endpoint() . $schemaless_url;
-
-		return download_url( $photon_ready_url, 350 );
+		return $photon_ready_url;
 	}
 
 	/**
@@ -42,7 +51,19 @@ class WSI_The_Golden_Retriever {
 	 * @static
 	 * @return string A random photon server base URI, trailing-slashed
 	 */
-	public static function api_endpoint() {
-		return sprintf( self::$photon_api_url_format, rand( 0, 3 ) );
+	public static function get_engine( $return_just_the_name = false ) {
+		// Allow devs to hook into and alter available engines
+		$available_engines = apply_filters( 'wsi_available_image_processing_engines', array(
+			'photon'     => 'WSI_Engine_Photon',
+			'imageoptim' => 'WSI_Engine_ImageOptim',
+		) );
+		// Default engine, allow devs to prefer specific option
+		$default_engine = apply_filters( 'wsi_default_image_processing_engine', 'imageoptim' );
+
+		if ( array_key_exists( $default_engine, $available_engines ) && class_exists( $available_engines[ $default_engine ] ) ) {
+			return $return_just_the_name ? $default_engine : new $available_engines[ $default_engine ];
+		}
+
+		return false;
 	}
 }

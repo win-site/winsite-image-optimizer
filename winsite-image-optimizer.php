@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Winsite Images
+Plugin Name: Winsite Image Optimizer
 Plugin URI: http://win-site.co.il
 Description: Optimize your images, period.
 Version: 1.0
@@ -61,6 +61,9 @@ final class Winsite_Image_Optimizer {
 	private function requirements() {
 		require_once 'includes/class-wsi-hooks.php';
 		require_once 'includes/class-wsi-the-golden-retriever.php';
+		require_once 'includes/engines/abstract-class-wsi-engine.php';
+		require_once 'includes/engines/class-wsi-engine-imageoptim.php';
+		require_once 'includes/engines/class-wsi-engine-photon.php';
 
 		if ( is_admin() ) {	
 			require_once 'includes/class-wsi-retro-processor.php';

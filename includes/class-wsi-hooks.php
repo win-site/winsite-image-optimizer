@@ -18,6 +18,41 @@ class WSI_Hooks {
 		// Filter uploaded file. Filetype validation done within callback.
 		add_filter( 'wp_handle_upload', array($this, 'filter_wp_handle_upload' ), 10, 2 );
 		add_filter( 'wp_update_attachment_metadata', array($this, 'filter_wp_update_attachment_metadata' ), 10, 2 );
+		add_filter( 'wp_prepare_attachment_for_js', array($this, 'filter_wp_prepare_attachment_for_js' ), 10, 3 );
+	}
+
+	/**
+	 * Filter the attachment data prepared for JavaScript.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array      $response   Array of prepared attachment data.
+	 * @param int|object $attachment Attachment ID or object.
+	 * @param array      $meta       Array of attachment meta data.
+	 */
+	public function filter_wp_prepare_attachment_for_js( $response, $attachment, $meta ) {
+		$meta = wp_get_attachment_metadata( $attachment->ID );
+		$attached_file = get_attached_file( $attachment->ID );
+
+		if ( isset( $meta['filesize'] ) ) {
+			$bytes = $meta['filesize'];
+		} elseif ( file_exists( $attached_file ) ) {
+			$bytes = filesize( $attached_file );
+		} else {
+			$bytes = '';
+		}
+
+		$original_bytes = absint( $attachment->_wsi_original_filesize );
+		$processing_engine = $attachment->_wsi_engine;
+
+		if ( $bytes && $original_bytes && $original_bytes > $bytes && ! empty( $response['filesizeHumanReadable'] ) ) {
+			$saved_bytes_diff = $original_bytes - $bytes;
+			$times_reduced = floor( $original_bytes / $bytes );
+
+			$response['filesizeHumanReadable'] .= sprintf( ' (reduced %s from %s by %s)', "{$times_reduced}x", size_format( $saved_bytes_diff ), $processing_engine );
+		}
+
+		return $response;
 	}
 
 	public function filter_wp_update_attachment_metadata( $data, $post_id ) {
@@ -25,6 +60,12 @@ class WSI_Hooks {
 		if ( false !== strpos( $data['file'], $this->last_filename ) ) {
 			// if so update its meta
 			update_post_meta( $post_id, '_wsi_photonized', '1' );
+			update_post_meta( $post_id, '_wsi_engine', (string) WSI_The_Golden_Retriever::get_engine( true ) );
+
+			// Update original file size
+			if ( ! empty( $this->last_file_size ) ) {
+				update_post_meta( $post_id, '_wsi_original_filesize', $this->last_file_size );
+			}
 
 			// as well as attachment metadata right here
 			$data['wsi_photonized'] = true;
@@ -63,7 +104,7 @@ class WSI_Hooks {
 		$time = current_time( 'mysql' );
 
 		// sanitize file name
-		$filename = $this->last_filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-photonized' ) . '-' . basename( $file['url'] ) );
+		$filename = $this->last_filename = sanitize_file_name( apply_filters( 'wsi_file_prefix', 'wsi-' . WSI_The_Golden_Retriever::get_engine( true ) ) . '-' . basename( $file['url'] ) );
 
 		$file_array = array(
 			'name' 		=> $filename,
@@ -78,10 +119,20 @@ class WSI_Hooks {
             return $file;
         }
 
+        // Store original file variable
+        $orig_file = $file;
+
 		$file = wp_handle_sideload( $file_array, $overrides, $time );
 
 		// Re-attach current filter for further uploads
 		add_filter( 'wp_handle_upload', array($this, __FUNCTION__), 10, 2 );
+
+		// Important! Unlink the temp file, but measure size beforehand
+		if ( file_exists( $orig_file['file'] ) ) {
+			$this->last_file_size = filesize( $orig_file['file'] );
+			// Goodbye.
+			unlink( $orig_file['file'] );
+		}
 
 		return $file;
 	}
