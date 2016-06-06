@@ -63,7 +63,6 @@ final class Winsite_Image_Optimizer {
 		require_once 'includes/class-wsi-the-golden-retriever.php';
 		require_once 'includes/engines/abstract-class-wsi-engine.php';
 		require_once 'includes/engines/class-wsi-engine-imageoptim.php';
-		require_once 'includes/engines/class-wsi-engine-photon.php';
 
 		if ( is_admin() ) {	
 			require_once 'includes/class-wsi-retro-processor.php';
