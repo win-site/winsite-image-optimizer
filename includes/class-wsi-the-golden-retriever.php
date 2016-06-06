@@ -54,7 +54,6 @@ class WSI_The_Golden_Retriever {
 	public static function get_engine( $return_just_the_name = false ) {
 		// Allow devs to hook into and alter available engines
 		$available_engines = apply_filters( 'wsi_available_image_processing_engines', array(
-			'photon'     => 'WSI_Engine_Photon',
 			'imageoptim' => 'WSI_Engine_ImageOptim',
 		) );
 		// Default engine, allow devs to prefer specific option
