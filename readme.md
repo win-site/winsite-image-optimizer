@@ -18,7 +18,15 @@ Winsite Image Optimizer will compress your images for optimal file-size while ke
 
 ## Screenshots ##
 
-### Dashboard screen
+### Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!
 
-![Dashboard screen](wp-assets/screenshot-1.png)
+![Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!](wp-assets/screenshot-1.png)
+
+### Statistics about the compression results
+
+![Statistics about the compression results](wp-assets/screenshot-2.jpg)
+
+### Settings section, under Settings > Media
+
+![Settings section, under Settings > Media](wp-assets/screenshot-3.jpg)
 

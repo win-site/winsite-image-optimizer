@@ -12,4 +12,6 @@ Image compression for WordPress done right
 Winsite Image Optimizer will compress your images for optimal file-size while keeping its quality (pretty much) intact, using the ImageOptim API (and other processing engines coming up soon).
 
 == Screenshots ==
-1. Dashboard screen
+1. Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!
+2. Statistics about the compression results
+3. Settings section, under Settings > Media
