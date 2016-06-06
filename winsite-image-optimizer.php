@@ -76,9 +76,8 @@ final class Winsite_Image_Optimizer {
 		// setup actions now
 		add_action( 'init', array( $this, 'init' ) );
 
-		if ( is_admin() ) {
-			$this->retro = new WSI_Retro_Processor;
-		}
+		// Initiate retroactive image optimization handler
+		$this->retro = new WSI_Retro_Processor;
 	}
 
 	public function init() {
