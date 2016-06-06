@@ -10,7 +10,7 @@ Image compression for WordPress done right
 **Stable tag:** trunk (master)  
 **License:** GPL  
 
-[![Build Status](https://travis-ci.org/AmitT/winsite-image-optimizer.svg?branch=master)](https://travis-ci.org/AmitT/winsite-image-optimizer) 
+[![Build Status](https://travis-ci.org/win-site/winsite-image-optimizer.svg?branch=master)](https://travis-ci.org/win-site/winsite-image-optimizer) 
 
 ## Description ##
 
