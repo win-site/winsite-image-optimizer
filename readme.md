@@ -18,4 +18,7 @@ Winsite Image Optimizer will compress your images for optimal file-size while ke
 
 ## Screenshots ##
 
+### Dashboard screen
+
+![Dashboard screen](wp-assets/screenshot-1.png)
 

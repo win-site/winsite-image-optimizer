@@ -12,4 +12,4 @@ Image compression for WordPress done right
 Winsite Image Optimizer will compress your images for optimal file-size while keeping its quality (pretty much) intact, using the ImageOptim API (and other processing engines coming up soon).
 
 == Screenshots ==
-1. screenshot-1.png
+1. Dashboard screen
