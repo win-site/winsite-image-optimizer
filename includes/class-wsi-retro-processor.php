@@ -7,7 +7,6 @@ class WSI_Retro_Processor {
 
 
 		add_action( 'admin_menu', 			   array( $this, 'add_admin_menu' ) );
-		add_action( 'admin_enqueue_scripts',   array( $this, 'admin_enqueues' ) );
 		add_action( 'wp_ajax_wsi-regeneretro', array( $this, 'do_regeneretro' ) );
 
 
