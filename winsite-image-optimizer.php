@@ -1,14 +1,14 @@
 <?php
-/*
-Plugin Name: Winsite Image Optimizer
-Plugin URI: http://win-site.co.il
-Description: Optimize your images, period.
-Version: 1.0
-Author: Winsite
-Author URI: http://win-site.co.il
-License: GPLv2 or later
-Text Domain: winsite-images
-*/
+/**
+ * Plugin Name: Winsite Image Optimizer
+ * Plugin URI: http://win-site.co.il
+ * Description: Optimize your images, period.
+ * Version: 1.0
+ * Author: Winsite
+ * Author URI: http://win-site.co.il
+ * License: GPLv2 or later
+ * Text Domain: winsite-images
+ */
 /*
 ATTENTION: ARE YOU A TALENTED...
 
