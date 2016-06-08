@@ -1,5 +1,5 @@
 === Winsite Image Optimizer ===
-Contributors: 		winsite, maor
+Contributors: 		winsite, maor, amitt
 Tags: 				image optimization, image compression
 Requires at least: 	4.5
 Tested up to: 		4.5.2
@@ -19,6 +19,15 @@ You can also process all of your old images retroactively using our dedicated to
 
 * ImageOptim
 
+
+**Warning**: This won't work on localhost in some cases, since some services work in a way that they pull images in from your site. This is why you'll need a public URL in order to make this work locally.
+You can use a service such as ngrok to achieve that, in conjunction with this filter:
+
+`
+add_filter( 'wsi_siteurl_override', function( $siteurl ) {
+	return 'http://ae190611.ngrok.io/path-to-wp-installation/';
+} );
+`
 
 == Screenshots ==
 

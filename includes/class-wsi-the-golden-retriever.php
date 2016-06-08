@@ -46,6 +46,17 @@ class WSI_The_Golden_Retriever {
 	}
 
 	/**
+	 * Get engines, after filter runs
+	 *
+	 * @return array Array of engines mapped as engine_id => Engine_PHP_Class
+	 */
+	public static function get_engines() {
+		return apply_filters( 'wsi_available_image_processing_engines', array(
+			'imageoptim' => 'WSI_Engine_ImageOptim',
+		) );
+	}
+
+	/**
 	 * Get a random Photon server to request (0-3)
 	 *
 	 * @static
@@ -53,9 +64,7 @@ class WSI_The_Golden_Retriever {
 	 */
 	public static function get_engine( $return_just_the_name = false ) {
 		// Allow devs to hook into and alter available engines
-		$available_engines = apply_filters( 'wsi_available_image_processing_engines', array(
-			'imageoptim' => 'WSI_Engine_ImageOptim',
-		) );
+		$available_engines = self::get_engines();
 		// Default engine, allow devs to prefer specific option
 		$default_engine = apply_filters( 'wsi_default_image_processing_engine', 'imageoptim' );
 

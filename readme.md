@@ -3,7 +3,7 @@
 
 Image compression for WordPress done right.
 
-**Contributors:** [winsite](https://profiles.wordpress.org/winsite), [maor](https://profiles.wordpress.org/maor)  
+**Contributors:** [winsite](https://profiles.wordpress.org/winsite), [maor](https://profiles.wordpress.org/maor), [amitt](https://profiles.wordpress.org/amitt)  
 **Tags:** [image optimization](https://wordpress.org/plugins/tags/image optimization), [image compression](https://wordpress.org/plugins/tags/image compression)  
 **Requires at least:** 4.5  
 **Tested up to:** 4.5.2  
@@ -21,6 +21,16 @@ You can also process all of your old images retroactively using our dedicated to
 **Currently-implemented Image Processing Services:**
 
 * ImageOptim
+
+
+**Warning**: This won't work on localhost in some cases, since some services work in a way that they pull images in from your site. This is why you'll need a public URL in order to make this work locally.
+You can use a service such as ngrok to achieve that, in conjunction with this filter:
+
+`
+add_filter( 'wsi_siteurl_override', function( $siteurl ) {
+	return 'http://ae190611.ngrok.io/path-to-wp-installation/';
+} );
+`
 
 ## Screenshots ##
 

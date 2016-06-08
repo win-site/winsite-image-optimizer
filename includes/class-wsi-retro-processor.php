@@ -37,6 +37,17 @@ class WSI_Retro_Processor {
 			$this->settings_section,
 			array( 'option' => 'should-keep-original' )
 		);
+
+		// Load all available engines so they can register their own settings
+		foreach ( WSI_The_Golden_Retriever::get_engines() as $engine_id => $engine_class ) {
+			/**
+			 * @todo  consider not instantiating the class but instead calling an internal
+			 *        static method that will register the settings itself.
+			 */
+			new $engine_class;
+		}
+
+		do_action( 'wsi_register_settings_fields', $this, $this->settings_page, $this->settings_section );
 	}
 
 	public function add_admin_menu() {
@@ -93,10 +104,27 @@ class WSI_Retro_Processor {
 	}
 
 	/**
+	 * Render text field
+	 *
+	 * @param array $args
+	 * @uses esc_attr
+	 * @uses this::get_setting
+	 * @return string
+	 */
+	public function field_text( $args ) {
+		$value = $this->get_setting( $args['option'] );
+		?>
+		<input type="text" name="<?php echo esc_attr( $this->settings_section . '[' . $args['option'] . ']' ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+		<?php if ( ! empty( $args['desc'] ) ) : ?>
+		<p class="description"><?php echo wp_kses_data( $args['desc'] ); ?></p>
+		<?php endif;
+	}
+
+	/**
 	 * Render field for each post type
 	 *
 	 * @param array $args
-	 * @uses this::get_revisions_to_keep
+	 * @uses this::get_setting
 	 * @uses esc_attr
 	 * @return string
 	 */

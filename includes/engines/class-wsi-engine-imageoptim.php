@@ -55,7 +55,7 @@ class WSI_Engine_ImageOptim extends WSI_Engine {
 	 * @return string A random ImageOptim server base URI, trailing-slashed
 	 */
 	public function api_endpoint() {
-		$username = apply_filters( 'wsi_engine_imageoptim_username', false );
+		$username = apply_filters( 'wsi_engine_imageoptim_username', winsite_image_optimizer()->retro->get_setting( 'imageoptim-username' ) );
 
 		// Username must be set
 		if ( ! $username ) {
@@ -69,5 +69,25 @@ class WSI_Engine_ImageOptim extends WSI_Engine {
 
 		// Ready URL
 		return sprintf( self::$imageoptim_api_url_format, $username, implode( ',', $options ) );
+	}
+
+
+	/**
+	 * Register settings for ImageOptim
+	 *
+	 * @param  WSI_Retro_Processor $that The object that initiated the settings
+	 * @param  [type] $settings_page    [description]
+	 * @param  [type] $settings_section [description]
+	 * @return void
+	 */
+	public function register_settings_fields( $that, $settings_page, $settings_section ) {
+		add_settings_field(
+			$settings_section . '-' . 'imageoptim-username',
+			__( 'ImageOptim Username', 'winsite-images' ),
+			array( $that, 'field_text' ),
+			$settings_page,
+			$settings_section,
+			array( 'option' => 'imageoptim-username', 'desc' => __( 'Get your username at <a href="https://im2.io/register">ImageOptim API</a>.', 'winsite-images' ) )
+		);
 	}
 }
