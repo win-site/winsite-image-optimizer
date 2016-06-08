@@ -26,15 +26,15 @@ You can also process all of your old images retroactively using our dedicated to
 
 ### Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!
 
-![Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!](wp-assets/screenshot-1.png)
+![Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!](assets/screenshot-1.png)
 
 ### Statistics about the compression results
 
-![Statistics about the compression results](wp-assets/screenshot-2.jpg)
+![Statistics about the compression results](assets/screenshot-2.jpg)
 
 ### Settings section, under Settings > Media
 
-![Settings section, under Settings > Media](wp-assets/screenshot-3.jpg)
+![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
 
