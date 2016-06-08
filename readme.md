@@ -20,7 +20,8 @@ You can also process all of your old images retroactively using our dedicated to
 
 **Currently-implemented Image Processing Services:**
 
-* ImageOptim
+* [ImageOptim](https://imageoptim.com/api) (You'll need to obtain an [API key](https://im2.io/register))
+* Send your suggestions on our [GitHub issue tracker](https://github.com/win-site/winsite-image-optimizer/issues).
 
 
 **Warning**: This won't work on localhost in some cases, since some services work in a way that they pull images in from your site. This is why you'll need a public URL in order to make this work locally.
@@ -31,6 +32,8 @@ add_filter( 'wsi_siteurl_override', function( $siteurl ) {
 	return 'http://ae190611.ngrok.io/path-to-wp-installation/';
 } );
 `
+
+We'd love to recieve contributions / suggestions from you on our [GitHub project](https://github.com/win-site/winsite-image-optimizer/).
 
 ## Installation ##
 
