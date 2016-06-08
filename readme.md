@@ -32,6 +32,13 @@ add_filter( 'wsi_siteurl_override', function( $siteurl ) {
 } );
 `
 
+## Installation ##
+
+1.	Install the Winsite Image Optimizer Plugin either via the search option inside the WordPress plugins page (located in the toolbar of your admin page), or by uploading the files to your server (in the /wp-content/plugins/ directory). 
+2.	Activate the Plugin (Install Now > Activate Plugin) 
+3.	Then go to the Winsite Image Optimizer setting section (Settings > Media, under Winsite Image Optimizer section)  and then fill in the missing settings (API details).
+4. Upload images (or retroactively processs images via Media > WS. Image Optimizer) and watch the file size decrease drastically!
+
 ## Screenshots ##
 
 ### Compress images retroactively. Will also regenerate any thumbnail sizes. Very useful!
@@ -47,6 +54,9 @@ add_filter( 'wsi_siteurl_override', function( $siteurl ) {
 ![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
+
+### 1.0.1 - June 8, 2016 ###
+Allow inputting ImageOptim username via Media settings page. Props [@maor](https://github.com/maor)
 
 ### 1.0.0 - June 8, 2016 ###
 Initial POC built, including some basic Unit Tests. Props [@maor](https://github.com/maor)
