@@ -16,16 +16,19 @@ jQuery( function ($) {
 			// do we have anything to process at all?
 			if ( totalImagesToProcess <= 0 ) {
 				alert( WSI_Generetro_Data.l10n.alert_no_images );
+				return;
 			}
 
 			// Disable regenerate button
 			$(':submit', $form).attr('disabled', true);
 			$('.status', $form).removeClass('status-display');
+			$('.spinner', $form).addClass('is-active');
 
 			WSI_Generetro.newRun( WSI_Generetro_Data.ids, $fileList, function() {
 				// This will run when process is done
 				$(':submit', $form).attr('disabled', false);
 				$('.status', $form).addClass('status-display');
+				$('.spinner', $form).removeClass('is-active');
 			} );
 		});
 	};

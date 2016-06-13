@@ -127,11 +127,15 @@ class WSI_Hooks {
 		// Re-attach current filter for further uploads
 		add_filter( 'wp_handle_upload', array($this, __FUNCTION__), 10, 2 );
 
-		// Important! Unlink the temp file, but measure size beforehand
-		if ( winsite_image_optimizer()->retro->get_setting( 'should-keep-original' ) != '1' && file_exists( $orig_file['file'] ) ) {
+		if ( file_exists( $orig_file['file'] ) ) {
+			// Measure size beforehand
 			$this->last_file_size = filesize( $orig_file['file'] );
-			// Goodbye.
-			unlink( $orig_file['file'] );
+
+			// Important! Unlink the temp file if noted so in settings
+			if ( winsite_image_optimizer()->retro->get_setting( 'should-keep-original' ) != '1' ) {
+				// Goodbye.
+				unlink( $orig_file['file'] );
+			}
 		}
 
 		return $file;
