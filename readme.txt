@@ -47,6 +47,11 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 
 == Changelog ==
 
+= 1.0.2 - June 13, 2016 
+* Bug fix: Fixed issue where JS wasn't loading in back-end, disabling use of the Retroactive Generator. Props [@maor](https://github.com/maor)
+* Improved UX on Retroactive Image Generator page by adding an spinner/indicator when process runs. Props [@maor](https://github.com/maor)
+* Bug fix: Fixed issue where images that got processed would be able to get procesed again with the Retroactive Gen. Props [@maor](https://github.com/maor)
+
 = 1.0.1 - June 8, 2016 =
 Allow inputting ImageOptim username via Media settings page. Props [@maor](https://github.com/maor)
 
