@@ -58,7 +58,7 @@ class WSI_Retro_Processor {
 
 	public function page_load() {
 		// Enqueue assets
-		wp_enqueue_script( 'wsi-main', plugins_url( 'assets/js/winsite-image-optimizer.js', dirname( __FILE__ ) ), array( 'jquery' ) );
+		wp_enqueue_script( 'wsi-main', plugins_url( 'static/js/winsite-image-optimizer.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 
 		$args = array(
 			'post_type'	 	 => 'attachment',
@@ -163,11 +163,17 @@ class WSI_Retro_Processor {
 				<?php wp_nonce_field( 'wsi-regeneretro' ) ?>
 				<button class="button button-primary" type="submit">Regenerate Retroactive</button>
 				<span class="status status-finished"><span class="dashicons dashicons-yes"></span> Finished</span>
+				<span class="spinner"></span>
 			</form>
 		</div>
 
 		<style>
 		#wsi-regeneretro .status { display: none; }
+		#wsi-regeneretro .status-active { display: inline-block; }
+		#wsi-regeneretro .spinner {
+			float: none;
+			display: inline-block;	
+		}
 		#wsi-regeneretro .status.status-display {
 			display: inline-block;
 			vertical-align: sub; /*fallback*/
@@ -231,13 +237,16 @@ class WSI_Retro_Processor {
 		), $file['file'] );
 
 		// update in meta that it got processed
-		update_post_meta( $image->ID, 'wsi_photonized', '1' );
+		update_post_meta( $image->ID, '_wsi_photonized', '1' );
 
 		if ( file_exists( $fullsizepath ) ) {
 			update_post_meta( $image->ID, '_wsi_original_filesize', filesize( $fullsizepath ) );
 
-			// Delete old image while we're at it
-			unlink( $fullsizepath );
+			// Should we unlink this file?
+			if ( winsite_image_optimizer()->retro->get_setting( 'should-keep-original' ) != '1' ) {
+				// Delete old image while we're at it
+				unlink( $fullsizepath );
+			}
 		}
 
 		update_post_meta( $image->ID, '_wsi_engine', (string) WSI_The_Golden_Retriever::get_engine( true ) );
@@ -265,6 +274,9 @@ class WSI_Retro_Processor {
 		die( json_encode( array( 'success' => sprintf( __( '&quot;%1$s&quot; (ID %2$s) was successfully resized in %3$s seconds.', 'regenerate-thumbnails' ), esc_html( get_the_title( $image->ID ) ), $image->ID, timer_stop() ) ) ) );
 	}
 
+	/**
+	 * @todo update with WP new JSON functions
+	 */
 	public function die_json_error_msg( $id, $message ) {
 		die( json_encode( array( 'error' => sprintf( __( '&quot;%1$s&quot; (ID %2$s) failed to resize. The error message was: %3$s', 'regenerate-thumbnails' ), esc_html( get_the_title( $id ) ), $id, $message ) ) ) );
 	}
