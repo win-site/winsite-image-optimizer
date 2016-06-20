@@ -3,6 +3,8 @@ jQuery( function ($) {
 
 	var totalImagesToProcess = 0;
 
+	var progressValue = 0;
+
 	WSI_Generetro.init = function() {
 		var $form = $('#wsi-regeneretro'),
 			$fileList = $('.wsi-file-list', $form);
@@ -49,6 +51,10 @@ jQuery( function ($) {
 		// Run it single time
 		WSI_Generetro.singleRun( currentID, function() {
 			$('<li>').text('Completed #' + currentID + ' (' + i + '/' + totalImagesToProcess + ')' ).appendTo($el);
+
+			progressValue = (i / totalImagesToProcess) * 100;
+			$('#progress-bar').val(progressValue);
+			$( '#progress-bar span' ).text( progressValue );
 
 			// re-run
 			WSI_Generetro.newRun( ids, $el, cb, ++i );
