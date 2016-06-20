@@ -161,7 +161,7 @@ class WSI_Retro_Processor {
 				<ul class="wsi-file-list"></ul>
 
 				<?php wp_nonce_field( 'wsi-regeneretro' ) ?>
-				<button class="button button-primary" type="submit">Regenerate Retroactive</button>
+				<button class="button button-primary" type="submit"><?php esc_html_e( 'Regenerate Retroactive', 'wsi-image-optimizer' ); ?></button>
 				<span class="status status-finished"><span class="dashicons dashicons-yes"></span> Finished</span>
 				<span class="spinner"></span>
 			</form>
@@ -172,7 +172,7 @@ class WSI_Retro_Processor {
 		#wsi-regeneretro .status-active { display: inline-block; }
 		#wsi-regeneretro .spinner {
 			float: none;
-			display: inline-block;	
+			display: inline-block;
 		}
 		#wsi-regeneretro .status.status-display {
 			display: inline-block;
@@ -180,6 +180,10 @@ class WSI_Retro_Processor {
 			vertical-align: -webkit-baseline-middle;
 			color: green;
 			cursor: default;
+		}
+		#wsi-regeneretro .wsi-file-list {
+			overflow-y: auto;
+			max-height: 20vw;
 		}
 		</style>
 		<?php
