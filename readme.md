@@ -10,7 +10,7 @@ Image compression for WordPress done right.
 **Stable tag:** trunk (master)  
 **License:** [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
-[![Build Status](https://travis-ci.org/win-site/winsite-image-optimizer.svg?branch=master)](https://travis-ci.org/win-site/winsite-image-optimizer) [![Coverage Status](https://coveralls.io/repos/win-site/winsite-image-optimizer/badge.svg?branch=master)](https://coveralls.io/github/win-site/winsite-image-optimizer) 
+[![Build Status](https://travis-ci.org/win-site/winsite-image-optimizer.svg?branch=master)](https://travis-ci.org/win-site/winsite-image-optimizer) [![Coverage Status](https://coveralls.io/repos/win-site/winsite-image-optimizer/badge.svg?branch=master)](https://coveralls.io/github/win-site/winsite-image-optimizer)
 
 ## Description ##
 
@@ -37,8 +37,8 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 
 ## Installation ##
 
-1.	Install the Winsite Image Optimizer Plugin either via the search option inside the WordPress plugins page (located in the toolbar of your admin page), or by uploading the files to your server (in the /wp-content/plugins/ directory). 
-2.	Activate the Plugin (Install Now > Activate Plugin) 
+1.	Install the Winsite Image Optimizer Plugin either via the search option inside the WordPress plugins page (located in the toolbar of your admin page), or by uploading the files to your server (in the /wp-content/plugins/ directory).
+2.	Activate the Plugin (Install Now > Activate Plugin)
 3.	Then go to the Winsite Image Optimizer setting section (Settings > Media, under Winsite Image Optimizer section)  and then fill in the missing settings (API details).
 4. Upload images (or retroactively processs images via Media > WS. Image Optimizer) and watch the file size decrease drastically!
 
@@ -57,6 +57,8 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 ![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
+### 1.0.3 - June 21, 2016 ###
+* retroactive optimization page - progress bar added, limit status frame hight, regenerate button text added as translation. Props [@AmitT](https://github.com/AmitT)
 
 ### 1.0.2 - June 13, 2016 ###
 * Bug fix: Fixed issue where JS wasn't loading in back-end, disabling use of the Retroactive Generator. Props [@maor](https://github.com/maor)
@@ -68,5 +70,3 @@ Allow inputting ImageOptim username via Media settings page. Props [@maor](https
 
 ### 1.0.0 - June 8, 2016 ###
 Initial POC built, including some basic Unit Tests. Props [@maor](https://github.com/maor)
-
-
