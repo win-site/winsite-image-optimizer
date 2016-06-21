@@ -52,11 +52,11 @@ jQuery( function ($) {
 		WSI_Generetro.singleRun( currentID, function() {
 			$('<li>').text('Completed #' + currentID + ' (' + i + '/' + totalImagesToProcess + ')' ).appendTo($el);
 
-			progressValue = (i / totalImagesToProcess) * 100;
-			$('#progress-bar').val(progressValue);
+			progressValue = ( i / totalImagesToProcess ) * 100;
+			$( '#progress-bar' ).val( progressValue );
 			$( '#progress-bar span' ).text( progressValue );
 
-			// re-run
+			// Re-run
 			WSI_Generetro.newRun( ids, $el, cb, ++i );
 		} );
 	};
