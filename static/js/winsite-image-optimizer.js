@@ -3,8 +3,6 @@ jQuery( function ($) {
 
 	var totalImagesToProcess = 0;
 
-	var progressValue = 0;
-
 	WSI_Generetro.init = function() {
 		var $form = $('#wsi-regeneretro'),
 			$fileList = $('.wsi-file-list', $form);
@@ -38,6 +36,7 @@ jQuery( function ($) {
 	WSI_Generetro.newRun = function( ids, $el, cb, i ) {
 		var currentID = ids.shift();
 
+		// Alert before tab / browser closed during the optimization process.
 		window.onbeforeunload = function ( cancelAlert ) {
 		   cancelAlert = cancelAlert || window.event;
 		   // For IE and Firefox prior to version 4
@@ -47,6 +46,9 @@ jQuery( function ($) {
 		   // For Safari
 		   return 'Are you sure you want to stop the optimization proccess?';
 		};
+
+		// Initial progress bar value before iteration starts
+		var progressValue = 0;
 
 		// iteration
 		if ( i === undefined ) {
