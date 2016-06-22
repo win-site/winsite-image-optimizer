@@ -36,6 +36,9 @@ jQuery( function ($) {
 	WSI_Generetro.newRun = function( ids, $el, cb, i ) {
 		var currentID = ids.shift();
 
+		// Initial progress bar value before iteration starts
+		var progressValue = 0;
+
 		// Alert before tab / browser closed during the optimization process.
 		window.onbeforeunload = function ( cancelAlert ) {
 		   cancelAlert = cancelAlert || window.event;
@@ -47,15 +50,12 @@ jQuery( function ($) {
 		   return 'Are you sure you want to stop the optimization proccess?';
 		};
 
-		// Initial progress bar value before iteration starts
-		var progressValue = 0;
-
-		// iteration
+		// Iteration
 		if ( i === undefined ) {
 			i = 1;
 		}
 
-		// did we end the loop?
+		// Did we end the loop?
 		if ( currentID === undefined ) {
 			return cb();
 		}
@@ -74,7 +74,7 @@ jQuery( function ($) {
 	};
 
 	WSI_Generetro.singleRun = function( id, cb ) {
-		// loop ID by ID and run it
+		// Loop ID by ID and run it
 		var payload = {
 			action: 'wsi-regeneretro',
 			id: id
