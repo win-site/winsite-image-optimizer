@@ -57,8 +57,11 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 ![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
+### 1.0.4 - June 21, 2016 ###
+* Retroactive optimization page - alert before tab / browser closed during the optimization process.
+
 ### 1.0.3 - June 21, 2016 ###
-* retroactive optimization page - progress bar added, limit status frame hight, regenerate button text added as translation. Props [@AmitT](https://github.com/AmitT)
+* Retroactive optimization page - progress bar added, limit status frame hight, regenerate button text added as translation. Props [@AmitT](https://github.com/AmitT)
 
 ### 1.0.2 - June 13, 2016 ###
 * Bug fix: Fixed issue where JS wasn't loading in back-end, disabling use of the Retroactive Generator. Props [@maor](https://github.com/maor)

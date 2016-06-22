@@ -38,6 +38,16 @@ jQuery( function ($) {
 	WSI_Generetro.newRun = function( ids, $el, cb, i ) {
 		var currentID = ids.shift();
 
+		window.onbeforeunload = function ( cancelAlert ) {
+		   cancelAlert = cancelAlert || window.event;
+		   // For IE and Firefox prior to version 4
+		   if ( cancelAlert ) {
+		      cancelAlert.returnValue = 'Are you sure you want to stop the optimization proccess?';
+		   }
+		   // For Safari
+		   return 'Are you sure you want to stop the optimization proccess?';
+		};
+
 		// iteration
 		if ( i === undefined ) {
 			i = 1;
