@@ -3,7 +3,7 @@
  * Plugin Name: Winsite Image Optimizer
  * Plugin URI: http://win-site.co.il
  * Description: Optimize your images, period.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Winsite
  * Author URI: http://win-site.co.il
  * License: GPLv2 or later

@@ -57,8 +57,12 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 ![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
+
+### 1.0.5 - June 23, 2016 ###
+* Setting Page - API link now will opened in a new tab. Props [@AmitT](https://github.com/AmitT)
+
 ### 1.0.4 - June 21, 2016 ###
-* Retroactive optimization page - alert before tab / browser closed during the optimization process.
+* Retroactive optimization page - alert before tab / browser closed during the optimization process. Props [@AmitT](https://github.com/AmitT)
 
 ### 1.0.3 - June 21, 2016 ###
 * Retroactive optimization page - progress bar added, limit status frame hight, regenerate button text added as translation. Props [@AmitT](https://github.com/AmitT)
