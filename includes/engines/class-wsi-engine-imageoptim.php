@@ -4,7 +4,7 @@ class WSI_Engine_ImageOptim extends WSI_Engine {
 	/**
 	 * String format for the ImageOptim base URI
 	 * Format: https://im2.io/<Username>/<Options>/<Image URL>
-	 * 
+	 *
 	 * @see  https://im2.io/api/post
 	 * @static
 	 * @var string
@@ -36,7 +36,7 @@ class WSI_Engine_ImageOptim extends WSI_Engine {
 
 	/**
 	 * Filter the HTTP request method, since ImageOptim supports POST only
-	 * 
+	 *
 	 * @param  [type] $args [description]
 	 * @param  [type] $url  [description]
 	 * @return [type]       [description]
@@ -87,7 +87,7 @@ class WSI_Engine_ImageOptim extends WSI_Engine {
 			array( $that, 'field_text' ),
 			$settings_page,
 			$settings_section,
-			array( 'option' => 'imageoptim-username', 'desc' => __( 'Get your username at <a href="https://im2.io/register">ImageOptim API</a>.', 'winsite-images' ) )
+			array( 'option' => 'imageoptim-username', 'desc' => __( 'Get your username at <a href="https://im2.io/register" target="_blank">ImageOptim API</a>.', 'winsite-images' ) )
 		);
 	}
 }
