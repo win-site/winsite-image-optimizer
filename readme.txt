@@ -47,6 +47,12 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 
 == Changelog ==
 
+= 1.0.6 - July 3, 2016 =
+* Bug fix: Fixed issue where attachment metadata would be overriden and cleared when using the Retroactive Generator
+* Bug fix: Fixed a UI/UX nuance. Now showing a notice for when a user hasn't set API details.
+* Added a bit of fresh salsa sauce
+
+
 = 1.0.2 - June 13, 2016 =
 * Bug fix: Fixed issue where JS wasn't loading in back-end, disabling use of the Retroactive Generator. Props [@maor](https://github.com/maor)
 * Improved UX on Retroactive Image Generator page by adding an spinner/indicator when process runs. Props [@maor](https://github.com/maor)
