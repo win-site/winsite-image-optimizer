@@ -250,12 +250,12 @@ class WSI_Retro_Processor {
 
 		$file = wp_handle_sideload( $file_array, $overrides, $time );
 
+		// get image post
+		$image->guid = $file['url'];
+		$image->post_mime_type = $file['type'];
+
 		// update original attachment
-		$ia = wp_insert_attachment( array(
-			'ID'             => $image->ID,
-			'guid'           => $file['url'],
-			'post_mime_type' => $file['type'],
-		), $file['file'] );
+		$ia = wp_insert_attachment( $image, $file['file'] );
 
 		// update in meta that it got processed
 		update_post_meta( $image->ID, '_wsi_photonized', '1' );
