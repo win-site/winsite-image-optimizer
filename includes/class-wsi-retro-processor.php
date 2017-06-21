@@ -168,7 +168,9 @@ class WSI_Retro_Processor {
 
 				<?php wp_nonce_field( 'wsi-regeneretro' ) ?>
 				<progress id='progress-bar' max='100'><span></span>%</progress>
-				<button class="button button-primary" <?php echo $username_exists ?: 'disabled'; ?> type="submit"><?php esc_html_e( 'Regenerate Retroactive', 'wsi-image-optimizer' ); ?></button>
+				<button class="button button-primary" <?php if (!$username_exists) echo 'disabled'; ?> type="submit">
+				<?php esc_html_e( 'Regenerate Retroactive', 'wsi-image-optimizer' ); ?>
+				</button>
 				<span class="status status-finished"><span class="dashicons dashicons-yes"></span> Finished</span>
 				<span class="spinner"></span>
 			</form>
