@@ -90,9 +90,9 @@ class WSI_Hooks {
 	 *               $overrides['upload_error_handler'](&$file, $message ) or array( 'error'=>$message ).
 	 */
 	public function filter_wp_handle_upload( $file, $action ) {
-		// check MIME type, if it's not an image, bye. Or if it's a sideload. 
+		// check MIME type, if it's not an image, bye. Or if it's a sideload.
 		// We Aim only for uploads.
-		if ( $action != 'upload' || false === strpos( $file['type'], 'image/' ) ) {
+		if ( $action != 'upload' || false === strpos( $file['type'], 'image/' ) || $file['type'] === 'image/svg+xml' ) {
 			return $file;
 		}
 
@@ -115,7 +115,7 @@ class WSI_Hooks {
         if ( is_wp_error( $file_array['tmp_name'] ) ) {
         	error_log( 'WSI: Error loading a file. Orig Array: ' . print_r(array( $file_array, $file ), true) . "\n Error details: " . print_r( $file_array['tmp_name'], true ) );
         	$this->last_filename = false; // make sure we're not going to mark this one as processed
-            
+
             return $file;
         }
 
@@ -143,7 +143,7 @@ class WSI_Hooks {
 
 	/**
 	 * Get uploads dir URL, trailing slashed
-	 * 
+	 *
 	 * @return string URL to uploads dir
 	 */
 	public function get_uploads_dir_url() {
