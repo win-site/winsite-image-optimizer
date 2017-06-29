@@ -2,7 +2,7 @@
 Contributors: 		winsite, maor, amitt
 Tags: 				image optimization, image compression
 Requires at least: 	4.5
-Tested up to: 		4.7
+Tested up to: 		4.8
 Stable tag: 		trunk
 License:           	GPLv2 or later
 License URI:       	https://www.gnu.org/licenses/gpl-2.0.html
@@ -46,6 +46,9 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 3. Settings section, under Settings > Media
 
 == Changelog ==
+
+= 1.0.7 - June 29, 2017 =
+* A few bag fixes.
 
 = 1.0.6 - July 3, 2016 =
 * Bug fix: Fixed issue where attachment metadata would be overriden and cleared when using the Retroactive Generator

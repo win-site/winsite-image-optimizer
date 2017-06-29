@@ -6,7 +6,7 @@ Image compression for WordPress done right.
 **Contributors:** [winsite](https://profiles.wordpress.org/winsite), [maor](https://profiles.wordpress.org/maor), [amitt](https://profiles.wordpress.org/amitt)  
 **Tags:** [image optimization](https://wordpress.org/plugins/tags/image optimization), [image compression](https://wordpress.org/plugins/tags/image compression)  
 **Requires at least:** 4.5  
-**Tested up to:** 4.7  
+**Tested up to:** 4.8  
 **Stable tag:** trunk (master)  
 **License:** [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)  
 
@@ -57,6 +57,9 @@ We'd love to recieve contributions / suggestions from you on our [GitHub project
 ![Settings section, under Settings > Media](assets/screenshot-3.jpg)
 
 ## Changelog ##
+
+### 1.0.7 - June 29, 2017 ###
+* A few bag fixes.
 
 ### 1.0.6 - July 3, 2016 ###
 * Bug fix: Fixed issue where attachment metadata would be overriden and cleared when using the Retroactive Generator
